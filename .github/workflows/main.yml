@@ -10,12 +10,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Download Arabic font (Amiri)
-        run: |
-          FONT_URL=$(cat Amiri-Regular.ttf)
-          wget -O Amiri-Regular.ttf "$FONT_URL"
-          echo "Amiri font downloaded successfully."
-
       - name: Build with Buildozer
         uses: ArtemSBulgakov/buildozer-action@v1
         id: buildozer
