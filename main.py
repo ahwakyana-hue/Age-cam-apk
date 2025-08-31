@@ -14,16 +14,11 @@ from kivy.uix.textinput import TextInput
 from kivy.uix.button import Button
 from kivy.uix.popup import Popup
 from kivy.utils import platform
-from kivy.core.text import LabelBase # <-- استيراد جديد
+from kivy.core.text import LabelBase
 
-# =================================================
-# تسجيل الخط العربي (الجزء الجديد والمهم)
-# =================================================
-LabelBase.register(name='Arabic', fn_regular='Amiri-Regular.ttf')
+# تسجيل الخط العربي الجديد
+LabelBase.register(name='Arabic', fn_regular='NotoNaskhArabic-Regular.ttf')
 
-# =================================================
-# طلب الصلاحيات على أندرويد
-# =================================================
 if platform == 'android':
     from android.permissions import request_permissions, Permission
 
@@ -37,10 +32,8 @@ class AgeCamApp(App):
                 Permission.INTERNET
             ])
 
-        # بناء الواجهة الرئيسية مع تحديد الخط العربي
         self.layout = BoxLayout(orientation='vertical', padding=30, spacing=10)
         
-        # استخدام font_name='Arabic' في كل العناصر النصية
         self.title_label = Label(text='حاسبة العمر', font_size='24sp', font_name='Arabic')
         self.layout.add_widget(self.title_label)
 
