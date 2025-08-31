@@ -1,4 +1,4 @@
-name: Build Kivy APK with Buildozer
+name: Buildozer Kivy APK
 
 on: [push]
 
@@ -8,17 +8,17 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      - name: Set up Buildozer and build APK
+      - name: Download Arabic font (Amiri)
+        run: |
+          FONT_URL=$(cat Amiri-Regular.ttf)
+          wget -O Amiri-Regular.ttf "$FONT_URL"
+          echo "Amiri font downloaded successfully."
+
+      - name: Build with Buildozer
         uses: ArtemSBulgakov/buildozer-action@v1
         id: buildozer
         with:
           command: buildozer android debug
           buildozer_version: stable
-
-      - name: Upload APK artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: package
-          path: ${{ steps.buildozer.outputs.filename }}
