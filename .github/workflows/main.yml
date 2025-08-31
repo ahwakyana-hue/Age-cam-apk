@@ -10,6 +10,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Download Stable Arabic Font
+        run: wget -O NotoNaskhArabic-Regular.ttf "https://github.com/Manus-AI-Dev/Public-Assets/raw/main/NotoNaskhArabic-Regular.ttf"
+
       - name: Build with Buildozer
         uses: ArtemSBulgakov/buildozer-action@v1
         id: buildozer
